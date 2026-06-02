@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { type Project } from "../store";
 
-const inView = {
+const inView: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

@@ -1,7 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { type Stat } from "../store";
 
-const inView = {
+const inView: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,

@@ -1,0 +1,243 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@layer base {
+  :root {
+    --bg: 0 0% 4%;
+    --surface: 0 0% 8%;
+    --text: 0 0% 96%;
+    --muted: 0 0% 53%;
+    --stroke: 0 0% 12%;
+    --accent: 0 0% 96%;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text-primary font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .accent-gradient {
+    background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+  }
+
+  .accent-gradient-border {
+    background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+  }
+
+  .font-display {
+    font-family: "Instrument Serif", serif;
+  }
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+@keyframes role-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+.animate-role-fade-in {
+  animation: role-fade-in 0.4s ease-out;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 6s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* ── Blog / Markdown typography ─────────────────────────────────────────── */
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4 {
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  color: hsl(var(--text));
+  line-height: 1.2;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+}
+.blog-content h2 { font-size: 1.75rem; }
+.blog-content h3 { font-size: 1.35rem; }
+
+.blog-content p {
+  color: hsl(var(--muted));
+  line-height: 1.8;
+  margin-bottom: 1.25em;
+  font-size: 1.05rem;
+}
+
+.blog-content a {
+  color: #89aacc;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.blog-content a:hover { opacity: 0.75; }
+
+.blog-content strong { color: hsl(var(--text)); font-weight: 600; }
+.blog-content em { color: hsl(var(--text)); font-style: italic; }
+
+.blog-content blockquote {
+  border-left: 2px solid #89aacc;
+  padding-left: 1.25rem;
+  margin: 1.75rem 0;
+  color: hsl(var(--muted));
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.blog-content ul,
+.blog-content ol {
+  color: hsl(var(--muted));
+  padding-left: 1.5rem;
+  margin-bottom: 1.25em;
+  line-height: 1.8;
+}
+.blog-content li { margin-bottom: 0.4em; }
+.blog-content li::marker { color: #89aacc; }
+
+.blog-content code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 0.85em;
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--stroke));
+  border-radius: 0.35rem;
+  padding: 0.15em 0.45em;
+  color: #89aacc;
+}
+
+.blog-content pre {
+  background: hsl(var(--surface));
+  border: 1px solid hsl(var(--stroke));
+  border-radius: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+.blog-content pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: hsl(var(--text));
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.blog-content hr {
+  border: none;
+  border-top: 1px solid hsl(var(--stroke));
+  margin: 2.5em 0;
+}
+
+.blog-content img {
+  width: 100%;
+  border-radius: 1rem;
+  margin: 1.5em 0;
+  border: 1px solid hsl(var(--stroke));
+}
+
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.9rem;
+}
+.blog-content th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid hsl(var(--stroke));
+  color: hsl(var(--text));
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+.blog-content td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid hsl(var(--stroke));
+  color: hsl(var(--muted));
+}
+
+/* Gradient border utility using pseudo-element pattern */
+.gradient-border-ring {
+  position: relative;
+}
+
+.gradient-border-ring::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #89aacc 0%, #4e85bf 100%);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.gradient-border-ring:hover::before {
+  opacity: 1;
+}

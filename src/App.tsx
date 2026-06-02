@@ -13,6 +13,7 @@ import Explorations from "./components/Explorations";
 import Stats from "./components/Stats";
 import Footer from "./components/Footer";
 import Admin from "./admin/Admin";
+import CustomCursor from "./components/CustomCursor";
 import BlogPostPage from "./pages/BlogPostPage";
 import JournalPage from "./pages/JournalPage";
 import WorkPage from "./pages/WorkPage";
@@ -53,6 +54,7 @@ function Portfolio() {
 export default function App() {
   return (
     <BrowserRouter>
+      <CustomCursor />
       <Routes>
         <Route path="/" element={<Portfolio />} />
         <Route path="/admin" element={<Admin />} />

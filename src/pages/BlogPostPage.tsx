@@ -3,8 +3,9 @@ import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { gsap } from "gsap";
-import { loadData } from "../store";
+import { loadData, type SiteData } from "../store";
 import { type NavSettings } from "../store";
+import { loadFromSupabase } from "../lib/db";
 
 function Navbar({ nav }: { nav: NavSettings }) {
   const [scrolled, setScrolled] = useState(false);
@@ -38,9 +39,14 @@ function Navbar({ nav }: { nav: NavSettings }) {
 
 export default function BlogPostPage() {
   const { slug } = useParams<{ slug: string }>();
-  const data = loadData();
-  const post = data.blog.find((p) => p.slug === slug && p.published);
+  const [data, setData] = useState<SiteData>(loadData);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    loadFromSupabase().then(setData).catch(() => {});
+  }, []);
+
+  const post = data.blog.find((p) => p.slug === slug && p.published);
 
   useEffect(() => {
     window.scrollTo(0, 0);

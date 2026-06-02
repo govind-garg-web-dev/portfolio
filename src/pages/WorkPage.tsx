@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
-import { loadData } from "../store";
+import { loadData, type SiteData } from "../store";
+import { loadFromSupabase } from "../lib/db";
 
 const inView = {
   hidden: { opacity: 0, y: 24 },
@@ -10,8 +11,12 @@ const inView = {
 };
 
 export default function WorkPage() {
-  const data = loadData();
+  const [data, setData] = useState<SiteData>(loadData);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    loadFromSupabase().then(setData).catch(() => {});
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);

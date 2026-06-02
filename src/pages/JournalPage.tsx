@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
-import { loadData } from "../store";
+import { loadData, type SiteData } from "../store";
+import { loadFromSupabase } from "../lib/db";
 
 const inView = {
   hidden: { opacity: 0, y: 24 },
@@ -10,9 +11,13 @@ const inView = {
 };
 
 export default function JournalPage() {
-  const data = loadData();
+  const [data, setData] = useState<SiteData>(loadData);
   const heroRef = useRef<HTMLDivElement>(null);
   const [activeTag, setActiveTag] = useState("All");
+
+  useEffect(() => {
+    loadFromSupabase().then(setData).catch(() => {});
+  }, []);
 
   const posts = (data.blog ?? []).filter((p) => p.published);
   const allTags = ["All", ...Array.from(new Set(posts.flatMap((p) => p.tags)))];

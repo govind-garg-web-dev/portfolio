@@ -1,4 +1,4 @@
-﻿import { motion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { type Stat } from "../store";
 
 const inView: Variants = {
@@ -6,7 +6,7 @@ const inView: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 1 },
   },
 };
 

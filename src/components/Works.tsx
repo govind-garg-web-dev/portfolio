@@ -1,4 +1,4 @@
-﻿import { motion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { type Project } from "../store";
 
@@ -7,7 +7,7 @@ const inView: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: "easeOut" },
+    transition: { duration: 1 },
   },
 };
 

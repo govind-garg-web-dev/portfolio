@@ -1,10 +1,10 @@
-﻿import { motion, type Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import { type BlogPost } from "../store";
 
 const inView: Variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 1, ease: "easeOut" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
 };
 
 export default function Journal({ blogPosts }: { blogPosts: BlogPost[] }) {
